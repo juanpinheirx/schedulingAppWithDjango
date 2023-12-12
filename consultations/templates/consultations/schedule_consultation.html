@@ -1,0 +1,25 @@
+{% block content %}
+  <h2>Marque uma consulta</h2>
+  <form method="post" action="{% url 'schedule_consultation' %}">
+    {% csrf_token %}
+    
+    <label for="patient_name">Nome do paciente:</label>
+    <input type="text" id="patient_name" name="patient_name" required>
+    
+    <label for="doctor">Pessoa médica:</label>
+    <select id="doctor" name="doctor" required>
+      {% for doctor in doctors %}
+        <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+      {% endfor %}
+    </select>
+    
+    <label for="appointment_date">Data da consulta:</label>
+    <input type="date" id="appointment_date" name="appointment_date" required>
+    
+    <label for="appointment_time">Hora da consulta:</label>
+    <input type="time" id="appointment_time" name="appointment_time" required>
+    
+    
+    <button type="submit">Clique aqui para marcar sua consulta</button>
+  </form>
+{% endblock %}
